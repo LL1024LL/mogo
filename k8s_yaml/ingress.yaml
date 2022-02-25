@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+  name: mynginx-ingress
+spec:
+  rules:
+    - host: mogonginx
+      http:
+        paths:
+          - backend:
+              serviceName: nginx
+              servicePort: 19003
+            path: /
+    - host: mogoservice
+      http:
+        paths:
+          - backend:
+              serviceName: api
+              servicePort: 19001
+            path: /

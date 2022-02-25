@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: D:\k8s\bin\kompose.exe convert
+    kompose.version: 1.24.0 (7c629530)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: kowl
+  name: kowl
+spec:
+  ports:
+    - name: "19002"
+      port: 19002
+      targetPort: 19002
+  selector:
+    io.kompose.service: kowl
+status:
+  loadBalancer: {}

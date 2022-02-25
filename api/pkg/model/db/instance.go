@@ -2,6 +2,7 @@ package db
 
 import (
 	"fmt"
+	"strings"
 
 	"gorm.io/gorm"
 
@@ -57,11 +58,12 @@ func InstanceList(conds egorm.Conds, extra ...string) (resp []*Instance, err err
 }
 
 func InstanceCreate(db *gorm.DB, data *Instance) (err error) {
-	if err = db.Model(Instance{}).Create(data).Error; err != nil {
+	if err = db.Model(Instance{}).Create(data).Error; err != nil &&
+		!strings.Contains(err.Error(), "Duplicate entry"){
 		elog.Error("create release error", zap.Error(err))
 		return
 	}
-	return
+	return nil
 }
 
 func InstanceByName(dt, name string) (resp Instance, err error) {
