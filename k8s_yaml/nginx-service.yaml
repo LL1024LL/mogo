@@ -9,10 +9,12 @@ metadata:
     io.kompose.service: nginx
   name: nginx
 spec:
+  type: NodePort
   ports:
     - name: "19003"
       port: 19003
       targetPort: 19003
+      nodePort: 30000
   selector:
     io.kompose.service: nginx
 status:

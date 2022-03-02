@@ -9,10 +9,12 @@ metadata:
     io.kompose.service: api
   name: api
 spec:
+  type: NodePort
   ports:
     - name: "19001"
       port: 19001
       targetPort: 19001
+      nodePort: 30001
   selector:
     io.kompose.service: api
 status:
