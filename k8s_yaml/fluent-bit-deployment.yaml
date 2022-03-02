@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: DaemonSet
 metadata:
   annotations:
     kompose.cmd: D:\k8s\bin\kompose.exe convert
@@ -9,12 +9,9 @@ metadata:
     io.kompose.service: fluent-bit
   name: fluent-bit
 spec:
-  replicas: 1
   selector:
     matchLabels:
       io.kompose.service: fluent-bit
-  strategy:
-    type: Recreate
   template:
     metadata:
       annotations:
@@ -47,4 +44,3 @@ spec:
         - name: fluent-bit-claim1
           persistentVolumeClaim:
             claimName: fluent-bit-claim1
-status: {}
